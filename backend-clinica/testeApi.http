@@ -1,0 +1,129 @@
+
+
+### 1.0 Verificar Status do Sistema
+GET http://localhost:3000/system-status
+
+### 1.1 Criar Usuário ADMIN (Primeiro do sistema)
+POST http://localhost:3000/cadastro
+Content-Type: application/json
+
+{
+  "name": "Super Admin",
+  "email": "admin@clinica.com",
+  "password": "password123"
+}
+
+### 1.2 Criar um Funcionário (Comum)
+POST http://localhost:3000/cadastro
+Content-Type: application/json
+
+{
+  "name": "Joao Funcionario",
+  "email": "joao@func.com",
+  "password": "password123"
+}
+
+### 2.1 Fazer Login (ADMIN)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "admin@clinica.com",
+  "password": "password123"
+}
+
+### 2.2 Fazer Login (Funcionário)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "joao@func.com",
+  "password": "password123"
+}
+
+### 3.1 Cadastrar Novo Pet (Completo)
+POST http://localhost:3000/pets
+Content-Type: application/json
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+{
+  "nome": "Rex",
+  "raca": "Labrador",
+  "dataNascimento": "2020-05-15",
+  "especie": "Canina",
+  "sexo": "Macho",
+  "tutor": "Jose da Silva",
+  "tutorTelefone": "11999998888",
+  "tutorEmail": "jose@email.com",
+  "vacinasTomadas": "V8 (2021), Raiva (2022)",
+  "nomeProximaVacina": "Reforço Raiva",
+  "proximaVacina": "2025-12-20",
+  "observacoes": "Animal dócil, mas tem medo de injeção."
+}
+
+### 3.2 Listar Todos os Pets
+GET http://localhost:3000/pets
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+### 3.3 Cadastrar Outro Pet (Gato)
+POST http://localhost:3000/pets
+Content-Type: application/json
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+{
+  "nome": "Mia",
+  "raca": "Siames",
+  "dataNascimento": "2022-01-10",
+  "especie": "Felina",
+  "sexo": "Fêmea",
+  "tutor": "Maria Oliveira",
+  "tutorTelefone": "11988887777",
+  "vacinasTomadas": "V4 (2022)",
+  "observacoes": "Alergia a dipirona"
+}
+
+### 3.4 Atualizar um Pet (Supondo ID 1)
+PUT http://localhost:3000/pets/1
+Content-Type: application/json
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+{
+  "vacinasTomadas": "V8 (2021), Raiva (2022), Reforço Raiva (2025)",
+  "nomeProximaVacina": "",
+  "proximaVacina": ""
+}
+
+### 4.1 Listar Equipe
+GET http://localhost:3000/usuarios
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+### 4.2 Deletar Funcionário (Supondo ID 2 - João)
+DELETE http://localhost:3000/usuarios/2
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+### 5.1 Erro: Senha Curta (menos de 8 chars)
+POST http://localhost:3000/cadastro
+Content-Type: application/json
+
+{
+  "name": "Teste Senha",
+  "email": "teste@erro.com",
+  "password": "123"
+}
+
+### 5.2 Erro: Nome com Números
+POST http://localhost:3000/pets
+Content-Type: application/json
+Authorization: Bearer <COLE_TOKEN_ADMIN_AQUI>
+
+{
+  "nome": "Rex 123",
+  "raca": "Vira Lata",
+  "tutor": "Joao",
+  "especie": "Canina",
+  "sexo": "Macho"
+}
+
+### 5.3 Erro: Funcionário tentando excluir Pet (Permissão Negada)
+DELETE http://localhost:3000/pets/1
+Authorization: Bearer <COLE_TOKEN_FUNC_AQUI>
