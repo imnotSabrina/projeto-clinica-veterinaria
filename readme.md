@@ -29,21 +29,39 @@ O projeto está dividido em duas pastas principais na raiz:
 
 ```text
 /
-├── backend-clinica/           # API, Banco de Dados e Regras de Negócio
-│   ├── controllers/           # Lógica dos Pets e Usuários
-│   ├── database/              # Arquivo data.sqlite (gerado auto)
-│   ├── model/                 # Schemas do Sequelize (Pet.js, User.js)
-│   ├── routes/                # Rotas Públicas e Privadas
-│   ├── .env                   # Variáveis de ambiente (Senha, Porta)
-│   └── index.js               # Entrada do servidor
+├── backend-clinica/               # API, Banco de Dados e Regras de Negócio
+│   ├── controllers/               # Lógica do Sistema
+│   │   ├── petController.js       # CRUD de Pets, validação de datas e agendamentos
+│   │   └── userController.js      # Autenticação, CRUD de equipe e status do sistema
+│   ├── database/
+│   │   ├── db.js                  # Conexão com o SQLite via Sequelize
+│   │   └── data.sqlite            # Arquivo do banco de dados (gerado automaticamente ao rodar)
+│   ├── middleware/
+│   │   └── authenticate.js        # Verificação de Token JWT e permissão de Admin
+│   ├── model/                     # Definição das Tabelas
+│   │   ├── Pet.js                 # Tabela de Prontuários (vacinas, tutor, agendamentos)
+│   │   └── User.js                # Tabela de Usuários (Admin/Veterinário)
+│   ├── routes/
+│   │   ├── private.js             # Rotas protegidas (Dashboard, Gestão)
+│   │   └── public.js              # Rotas abertas (Login, Setup Inicial)
+│   ├── .env                       # Variáveis de ambiente (PORTA e SENHA SECRETA) - Não sobe pro Git
+│   ├── .gitignore                 # Arquivos ignorados (node_modules, .env, banco)
+│   ├── index.js                   # Arquivo principal (Start do servidor)
+│   └── package.json               # Dependências (express, sequelize, bcrypt, etc.)
 │
-└── frontend-clinica/          # Interface React
+└── frontend-clinica/              # Interface Web (React)
     ├── src/
-    │   ├── Login.jsx          # Tela de Acesso/Configuração
-    │   ├── Dashboard.jsx      # Painel Principal (Admin/Vet)
-    │   └── ...
-    ├── tailwind.config.js     # Configuração de estilos
-    └── package.json           # Dependências do Front
+    │   ├── App.jsx                # Configuração de Rotas (Router DOM)
+    │   ├── Dashboard.jsx          # Painel Principal (Prontuários, Vacinas e Equipe)
+    │   ├── Login.jsx              # Tela de Login e Configuração do 1º Admin
+    │   ├── index.css              # Importação do Tailwind CSS
+    │   ├── main.jsx               # Ponto de entrada da aplicação
+    │   └── App.css                # (Opcional) Estilos extras
+    ├── .gitignore                 # Arquivos ignorados do frontend
+    ├── index.html                 # HTML base do site
+    ├── package.json               # Dependências (react, lucide, toastify, etc.)
+    ├── tailwind.config.js         # Configuração de cores e temas do Tailwind
+    └── vite.config.js             # Configuração do compilador Vite
 ```
 
 ---
@@ -156,4 +174,5 @@ Se precisar testar o Backend isoladamente (via Insomnia/Postman):
 ## 📝 Autor
 
 Projeto desenvolvido para fins acadêmicos na disciplina de Programação para Internet II.
+
 
