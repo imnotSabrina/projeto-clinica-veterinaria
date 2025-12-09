@@ -75,7 +75,7 @@ function Login() {
             <Activity className="w-10 h-10 text-blue-600" />
           </div>
           <h1 className="text-3xl font-extrabold text-blue-900 tracking-tight">VetSystem</h1>
-          <p className="text-blue-500 text-sm mt-1 font-medium">Gestão Clínica Animada</p>
+          <p className="text-blue-500 text-sm mt-1 font-medium">Gestão Clínica</p>
         </div>
 
         {!systemInitialized && (

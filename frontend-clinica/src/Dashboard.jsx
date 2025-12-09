@@ -15,8 +15,8 @@ const petBackgroundStyle = {
 };
 
 // --- DADOS ---
-const RACAS_CAES = ["SRD (Sem Raça)", "Poodle", "Shih Tzu", "Yorkshire", "Bulldog", "Golden Retriever", "Labrador", "Pug", "Pinscher", "Pastor Alemão", "Outra"];
-const RACAS_GATOS = ["SRD (Sem Raça)", "Persa", "Siamês", "Maine Coon", "Angorá", "Sphynx", "Ragdoll", "Bengal", "Outra"];
+const RACAS_CAES = ["Poodle", "Shih Tzu", "Yorkshire", "Bulldog", "Golden Retriever", "Labrador", "Pug", "Pinscher", "Pastor Alemão", "Outra"];
+const RACAS_GATOS = ["Persa", "Siamês", "Maine Coon", "Angorá", "Sphynx", "Ragdoll", "Bengal", "Outra"];
 const VACINAS_COMUNS = ["V8/V10 (Múltipla)", "Raiva", "Gripe", "Giárdia", "Leishmaniose", "Vermífugo", "Antipulgas"];
 
 function Dashboard() {
@@ -302,7 +302,7 @@ function Dashboard() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead className="bg-gray-50/80 text-gray-600 font-bold uppercase text-xs">
-                            <tr><th className="px-6 py-3 text-left">Data</th><th className="px-6 py-3 text-left">Vacina</th><th className="px-6 py-3 text-left">Paciente</th><th className="px-6 py-3 text-left">Tutor</th><th className="px-6 py-3 text-center">Ação</th></tr>
+                            <tr><th className="px-6 py-3 text-left">Data</th><th className="px-6 py-3 text-left">Vacina</th><th className="px-6 py-3 text-left">Pet</th><th className="px-6 py-3 text-left">Tutor</th><th className="px-6 py-3 text-center">Ação</th></tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {vacinasAtuais.map((item, i) => (
@@ -371,7 +371,7 @@ function Dashboard() {
         {/* PRONTUÁRIOS */}
         <section>
           <div className="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
-             <div><h2 className="text-2xl font-extrabold text-gray-800 flex items-center gap-3"><Stethoscope size={32} className="text-blue-700"/> Prontuários</h2><p className="text-blue-900/70 text-sm mt-1 font-medium bg-blue-50/50 px-2 py-1 rounded inline-block">Gestão completa de pacientes e histórico clínico.</p></div>
+             <div><h2 className="text-2xl font-extrabold text-gray-800 flex items-center gap-3"><Stethoscope size={32} className="text-blue-700"/> Prontuários</h2><p className="text-blue-900/70 text-sm mt-1 font-medium bg-blue-50/50 px-2 py-1 rounded inline-block">Gestão completa de pets e histórico clínico.</p></div>
              <div className="relative w-full md:w-96"><Search className="absolute left-3 top-3 text-gray-400" size={18}/><input className="pl-10 pr-4 py-2.5 w-full bg-white/90 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-600 outline-none font-medium" placeholder="Buscar por Pet ou Tutor..." value={buscaPet} onChange={e=>setBuscaPet(e.target.value)}/></div>
           </div>
           
@@ -380,7 +380,7 @@ function Dashboard() {
                 {/* CARD DE FORMULÁRIO COM REF */}
                 <div ref={petFormRef} className={`bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-md border-t-4 sticky top-24 transition-all ${isEditing ? 'border-amber-500 ring-1 ring-amber-500' : 'border-blue-600'}`}>
                     <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                        <h3 className="font-bold text-gray-800 flex items-center gap-2">{isEditing ? <><Edit size={20} className="text-amber-600"/> Editar Paciente</> : <><Plus size={20} className="text-blue-700"/> Cadastrar Pet</>}</h3>
+                        <h3 className="font-bold text-gray-800 flex items-center gap-2">{isEditing ? <><Edit size={20} className="text-amber-600"/> Editar Pet</> : <><Plus size={20} className="text-blue-700"/> Cadastrar Pet</>}</h3>
                         {isEditing && <button onClick={cancelarEdicao} className="text-xs font-bold text-red-600 hover:underline">Cancelar</button>}
                     </div>
                     <form onSubmit={salvarPet} className="space-y-6">
@@ -410,7 +410,7 @@ function Dashboard() {
                             <label className={`${labelClass} mt-4`}>Observações</label>
                             <textarea className={`${inputClass(false)} h-24 resize-none`} value={petForm.observacoes} onChange={e=>setPetForm({...petForm, observacoes: e.target.value})}></textarea>
                         </div>
-                        <button className={`w-full py-3.5 font-bold text-white rounded-lg shadow-md transition-all active:scale-95 flex justify-center items-center gap-2 ${isEditing ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-700 hover:bg-blue-800'}`}>{isEditing ? <><Save size={18}/> Salvar Alterações</> : <><Plus size={18}/> Cadastrar Paciente</>}</button>
+                        <button className={`w-full py-3.5 font-bold text-white rounded-lg shadow-md transition-all active:scale-95 flex justify-center items-center gap-2 ${isEditing ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-700 hover:bg-blue-800'}`}>{isEditing ? <><Save size={18}/> Salvar Alterações</> : <> Adicionar Pet</>}</button>
                     </form>
                 </div>
             </div>
