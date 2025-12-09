@@ -44,6 +44,7 @@ O projeto está dividido em duas pastas principais na raiz:
     │   └── ...
     ├── tailwind.config.js     # Configuração de estilos
     └── package.json           # Dependências do Front
+```
 
 ---
 
@@ -81,7 +82,7 @@ Siga os passos abaixo para rodar o projeto localmente. Você precisará de **doi
     Crie um arquivo chamado `.env` na raiz da pasta `backend-clinica` e adicione o seguinte conteúdo:
     ```ini
     PORT=3000
-    SECRET_JWT=senha_secreta_do_sistema_veterinaria_2025
+    SECRET_JWT=sua_senha
     ```
 
 4.  Inicie o servidor:
@@ -155,3 +156,4 @@ Se precisar testar o Backend isoladamente (via Insomnia/Postman):
 ## 📝 Autor
 
 Projeto desenvolvido para fins acadêmicos na disciplina de Programação para Internet II.
+
